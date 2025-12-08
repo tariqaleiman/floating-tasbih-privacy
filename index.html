@@ -24,14 +24,14 @@
     h1{margin:0;font-size:20px}
     .meta{font-size:13px;color:var(--muted);margin-top:6px}
     
-    /* --- تنسيق الأزرار الجديد --- */
+    /* تنسيق الأزرار */
     .controls{display:flex;gap:8px;align-items:center}
     
     .btn {
         height: 40px;
-        width: auto; 
-        padding: 0 18px; 
-        border-radius: 999px; 
+        width: auto;
+        padding: 0 18px;
+        border-radius: 999px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -41,11 +41,11 @@
         font-weight: 500;
         color: var(--text);
         transition: background 0.2s ease;
-        background: rgba(0, 0, 0, 0.06); 
+        background: rgba(0, 0, 0, 0.06);
     }
 
     .btn:hover {
-        background: rgba(0, 0, 0, 0.12); 
+        background: rgba(0, 0, 0, 0.12);
     }
     
     #theme-toggle {
@@ -55,30 +55,26 @@
     }
 
     [data-theme='dark'] .btn {
-        background: rgba(255, 255, 255, 0.1); 
+        background: rgba(255, 255, 255, 0.1);
     }
     [data-theme='dark'] .btn:hover {
         background: rgba(255, 255, 255, 0.2);
     }
-    /* -------------------------- */
 
-    /* المحتوى */
+    /* المحتوى والتذييل */
     main{margin-top:18px;line-height:1.72}
     h2{font-size:15px;margin:18px 0 8px}
     ul{margin:0 0 8px 20px}
     p{margin:8px 0}
     a{color:var(--accent); text-decoration: none;}
     
-    /* التذييل */
     footer.policy-footer{margin-top:20px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.04);display:flex;justify-content:space-between;align-items:center;flex-wrap: wrap; gap: 10px;}
     .small{font-size:13px;color:var(--muted)}
     code{background:rgba(0,0,0,0.04);padding:2px 6px;border-radius:6px; font-family: monospace;}
 
-    /* اتجاه النصوص */
     :root[dir='rtl']{direction:rtl}
     :root[dir='ltr']{direction:ltr}
 
-    /* للموبايل */
     @media (max-width:640px){.wrap{margin:12px;padding:12px}.card{padding:16px}h1{font-size:18px}}
   </style>
 </head>
@@ -108,7 +104,11 @@
   </div>
 
   <script>
-    // 1. نصوص السياسة 
+    // 🛑 1. المتغير الذي تقوم بتعديله يدوياً 🛑
+    // عند تحديث السياسة، قم بتعديل هذا التاريخ والوقت.
+    const LAST_MODIFIED_DATE = '2025-12-08T10:00:00'; 
+    
+    // 2. نصوص السياسة (لم تتغير)
     const FULL = {
       ar: `
         <p><strong>مرحبًا بك في تطبيق المسبحة العائمة.</strong> تُحدد هذه السياسة كيفية جمعنا للبيانات واستخدامها ومشاركتها، والخيارات المتاحة لديك بخصوص معلوماتك الشخصية.</p>
@@ -215,10 +215,6 @@
       `
     };
 
-    // 2. التاريخ الثابت (المطلوب)
-    // قم بتعديل قيمة هذا المتغير يدوياً عند إجراء أي تحديث على السياسة
-    const MANUAL_UPDATE_DATE = 'December 8, 2025'; 
-
     // 3. دوال مساعدة آمنة
     function safeGetItem(key) {
       try { return localStorage.getItem(key); } catch (e) { return null; }
@@ -235,30 +231,31 @@
     const themeBtn = document.getElementById('theme-toggle');
     const yearEl = document.getElementById('year');
 
+    // وضع السنة الحالية
     if(yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // دالة عرض التاريخ الثابت
-    function displayStaticDate(lang) {
-      const label = (lang === 'ar') ? 'آخر تعديل: ' : 'Last updated: ';
+    // 5. دالة عرض التاريخ الثابت
+    function displayFixedDate(lang) {
+      // تحويل التاريخ اليدوي إلى كائن Date
+      const dateToFormat = new Date(LAST_MODIFIED_DATE);
       
-      // تنسيق التاريخ الثابت حسب اللغة
-      let formattedDate = MANUAL_UPDATE_DATE;
+      const opts = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+      let formatted;
       try {
-        const dateObj = new Date(MANUAL_UPDATE_DATE);
-        // لا نحتاج للوقت، فقط اليوم والشهر والسنة
-        const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
-        formattedDate = new Intl.DateTimeFormat(lang, options).format(dateObj);
-      } catch (e) {
-        // العودة إلى النص الأصلي في حال فشل التنسيق
-        formattedDate = MANUAL_UPDATE_DATE;
+        // تنسيق التاريخ بناءً على اللغة
+        formatted = new Intl.DateTimeFormat(lang, opts).format(dateToFormat);
+      } catch(e) {
+        // تنسيق احتياطي
+        formatted = dateToFormat.toISOString().slice(0,10);
       }
-
+      
+      const label = lang === 'ar' ? 'آخر تعديل: ' : 'Last updated: ';
       if (lastUpdatedEl) {
-        lastUpdatedEl.textContent = label + formattedDate;
+          lastUpdatedEl.textContent = label + formatted;
       }
     }
 
-    // دالة اللغة
+    // 6. دالة اللغة
     function setLanguage(lang) {
       if (lang === 'ar') {
         document.documentElement.lang = 'ar';
@@ -274,11 +271,11 @@
         langBtn.textContent = 'العربية';
       }
       safeSetItem('policy-lang', lang);
-      // تحديث عرض التاريخ الثابت بعد تغيير اللغة
-      displayStaticDate(lang); 
+      // عرض التاريخ الثابت باللغة الجديدة
+      displayFixedDate(lang); 
     }
 
-    // دالة الثيم
+    // 7. دالة الثيم
     function applyTheme(theme) {
       if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
       else document.documentElement.removeAttribute('data-theme');
@@ -292,19 +289,19 @@
         : (isAr ? 'تبديل للوضع الليلي' : 'Switch to dark');
     }
 
-    // التهيئة
+    // 8. التهيئة
     (function init() {
       const savedLang = safeGetItem('policy-lang');
       const navLang = navigator.language || navigator.userLanguage || 'en';
       const defaultLang = savedLang || (navLang.toLowerCase().startsWith('ar') ? 'ar' : 'en');
-      setLanguage(defaultLang); 
+      setLanguage(defaultLang);
 
       const savedTheme = safeGetItem('policy-theme');
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
     })();
 
-    // الأحداث
+    // 9. الأحداث
     langBtn.addEventListener('click', () => {
       const next = document.documentElement.lang === 'ar' ? 'en' : 'ar';
       setLanguage(next);
@@ -317,8 +314,7 @@
       applyTheme(current === 'dark' ? 'light' : 'dark');
     });
 
-    // لا نحتاج إلى MutationObserver أو دالة تحديث التاريخ الديناميكي
-    // لأننا نستدعي displayStaticDate() فقط عند تغيير اللغة (داخل setLanguage)
+    // 🛑 ملاحظة: تم حذف كود MutationObserver ودالة updateTimestamp() 🛑
   </script>
 </body>
 </html>
