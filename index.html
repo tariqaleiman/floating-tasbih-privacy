@@ -29,9 +29,9 @@
     
     .btn {
         height: 40px;
-        width: auto; /* العرض يتمدد حسب النص */
-        padding: 0 18px; /* مساحة داخلية للنص */
-        border-radius: 999px; /* حواف دائرية كاملة */
+        width: auto; 
+        padding: 0 18px; 
+        border-radius: 999px; 
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -41,23 +41,21 @@
         font-weight: 500;
         color: var(--text);
         transition: background 0.2s ease;
-        background: rgba(0, 0, 0, 0.06); /* رمادي شفاف للوضع النهاري */
+        background: rgba(0, 0, 0, 0.06); 
     }
 
     .btn:hover {
-        background: rgba(0, 0, 0, 0.12); /* تغميق عند التحويم */
+        background: rgba(0, 0, 0, 0.12); 
     }
     
-    /* زر الثيم يبقى دائرياً */
     #theme-toggle {
         width: 40px;
         padding: 0;
         font-size: 16px;
     }
 
-    /* ألوان الأزرار في الوضع الليلي */
     [data-theme='dark'] .btn {
-        background: rgba(255, 255, 255, 0.1); /* أبيض شفاف */
+        background: rgba(255, 255, 255, 0.1); 
     }
     [data-theme='dark'] .btn:hover {
         background: rgba(255, 255, 255, 0.2);
@@ -110,7 +108,7 @@
   </div>
 
   <script>
-    // 1. نصوص السياسة (تم تعديل بند الأطفال ليتوافق مع الجمهور العام)
+    // 1. نصوص السياسة 
     const FULL = {
       ar: `
         <p><strong>مرحبًا بك في تطبيق المسبحة العائمة.</strong> تُحدد هذه السياسة كيفية جمعنا للبيانات واستخدامها ومشاركتها، والخيارات المتاحة لديك بخصوص معلوماتك الشخصية.</p>
@@ -217,7 +215,11 @@
       `
     };
 
-    // 2. دوال مساعدة آمنة
+    // 2. التاريخ الثابت (المطلوب)
+    // قم بتعديل قيمة هذا المتغير يدوياً عند إجراء أي تحديث على السياسة
+    const MANUAL_UPDATE_DATE = 'December 8, 2025'; 
+
+    // 3. دوال مساعدة آمنة
     function safeGetItem(key) {
       try { return localStorage.getItem(key); } catch (e) { return null; }
     }
@@ -225,7 +227,7 @@
       try { localStorage.setItem(key, val); } catch (e) { /* ignore */ }
     }
 
-    // 3. تعريف العناصر
+    // 4. تعريف العناصر
     const contentEl = document.getElementById('content');
     const titleEl = document.getElementById('policy-title');
     const lastUpdatedEl = document.getElementById('last-updated');
@@ -233,8 +235,28 @@
     const themeBtn = document.getElementById('theme-toggle');
     const yearEl = document.getElementById('year');
 
-    // السنة
     if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // دالة عرض التاريخ الثابت
+    function displayStaticDate(lang) {
+      const label = (lang === 'ar') ? 'آخر تعديل: ' : 'Last updated: ';
+      
+      // تنسيق التاريخ الثابت حسب اللغة
+      let formattedDate = MANUAL_UPDATE_DATE;
+      try {
+        const dateObj = new Date(MANUAL_UPDATE_DATE);
+        // لا نحتاج للوقت، فقط اليوم والشهر والسنة
+        const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
+        formattedDate = new Intl.DateTimeFormat(lang, options).format(dateObj);
+      } catch (e) {
+        // العودة إلى النص الأصلي في حال فشل التنسيق
+        formattedDate = MANUAL_UPDATE_DATE;
+      }
+
+      if (lastUpdatedEl) {
+        lastUpdatedEl.textContent = label + formattedDate;
+      }
+    }
 
     // دالة اللغة
     function setLanguage(lang) {
@@ -252,6 +274,8 @@
         langBtn.textContent = 'العربية';
       }
       safeSetItem('policy-lang', lang);
+      // تحديث عرض التاريخ الثابت بعد تغيير اللغة
+      displayStaticDate(lang); 
     }
 
     // دالة الثيم
@@ -273,20 +297,17 @@
       const savedLang = safeGetItem('policy-lang');
       const navLang = navigator.language || navigator.userLanguage || 'en';
       const defaultLang = savedLang || (navLang.toLowerCase().startsWith('ar') ? 'ar' : 'en');
-      setLanguage(defaultLang);
+      setLanguage(defaultLang); 
 
       const savedTheme = safeGetItem('policy-theme');
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
-
-      updateTimestamp();
     })();
 
     // الأحداث
     langBtn.addEventListener('click', () => {
       const next = document.documentElement.lang === 'ar' ? 'en' : 'ar';
       setLanguage(next);
-      // إعادة تطبيق الثيم لتحديث النصوص
       const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
       applyTheme(currentTheme);
     });
@@ -296,22 +317,8 @@
       applyTheme(current === 'dark' ? 'light' : 'dark');
     });
 
-    // التاريخ
-    function updateTimestamp() {
-      const now = new Date();
-      const opts = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
-      let formatted;
-      try {
-        formatted = new Intl.DateTimeFormat(document.documentElement.lang, opts).format(now);
-      } catch(e) {
-        formatted = now.toISOString().slice(0,10);
-      }
-      const label = document.documentElement.lang === 'ar' ? 'آخر تعديل: ' : 'Last updated: ';
-      lastUpdatedEl.textContent = label + formatted;
-    }
-
-    const obs = new MutationObserver(() => updateTimestamp());
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    // لا نحتاج إلى MutationObserver أو دالة تحديث التاريخ الديناميكي
+    // لأننا نستدعي displayStaticDate() فقط عند تغيير اللغة (داخل setLanguage)
   </script>
 </body>
 </html>
