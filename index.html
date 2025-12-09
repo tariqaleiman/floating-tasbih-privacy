@@ -7,7 +7,7 @@
 
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="shortcut icon" type="image/png" href="icon.png">
-  
+   
   <style>
     :root{--bg:#f7f8fb;--card:#fff;--text:#0b1220;--muted:#6b7280;--accent:#0b63d1;--radius:12px}
     [data-theme='dark']{--bg:#071025;--card:#071026;--text:#e6eef8;--muted:#9aa6bd}
@@ -81,89 +81,121 @@
   </div>
 
   <script>
-    // 🛑 ضبط التاريخ والوقت يدوياً هنا 🛑
-    // الصيغة: السنة-الشهر-اليوم T الساعة:الدقيقة:الثانية
-    // 10:00:00 تعني العاشرة صباحاً
-    const LAST_MODIFIED_DATE = '2025-12-08T10:00:00'; 
+    // ✅ تم تحديث التاريخ إلى 9 ديسمبر 2025
+    const LAST_MODIFIED_DATE = '2025-12-09T11:00:00'; 
     
     const FULL = {
       ar: `
-        <p><strong>مرحبًا بك في تطبيق المسبحة العائمة.</strong> تُحدد هذه السياسة كيفية جمعنا للبيانات واستخدامها ومشاركتها، والخيارات المتاحة لديك بخصوص معلوماتك الشخصية.</p>
+        <p><strong>مرحبًا بك في تطبيق المسبحة العائمة.</strong> تُحدد هذه السياسة كيفية جمعنا للبيانات واستخدامها ومشاركتها، بما في ذلك عمليات الشراء والاشتراكات.</p>
+        
         <h2>1. البيانات التي نجمعها</h2>
         <p>نقوم بجمع الفئات التالية من البيانات لأغراض تشغيل التطبيق وتحسين تجربتك:</p>
         <ul>
-          <li><strong>بيانات الحساب:</strong> البريد الإلكتروني (في حال تسجيل الدخول) لإنشاء الحساب وحفظ تقدمك سحابيًا. تُخزن بيانات المصادقة بأمان عبر Google Firebase.</li>
-          <li><strong>سجلات الجلسات والاستخدام:</strong> معلومات حول جلسات التسبيح، العداد، الأذكار المفضلة، وسجلات الأعطال (Crash Logs) لتحسين الأداء.</li>
-          <li><strong>بيانات تقنية:</strong> نوع الجهاز، نظام التشغيل، ومعرفات الجهاز العامة لضمان توافق التطبيق.</li>
-          <li><strong>معرّف الإعلانات (Advertising ID):</strong> يُستخدم لعرض إعلانات غير مخصصة أو مخصصة (حسب موافقتك وإعدادات جهازك) عبر خدمة Google AdMob.</li>
+          <li><strong>بيانات الحساب:</strong> البريد الإلكتروني (في حال تسجيل الدخول) لإنشاء الحساب وحفظ تقدمك سحابيًا.</li>
+          <li><strong>المعلومات المالية (Financial Info):</strong> عند شراء منتجات أو اشتراكات داخل التطبيق، تتم معالجة المعاملة بالكامل عبر <strong>Google Play</strong>. نحن لا نقوم بتخزين أو الوصول إلى تفاصيل بطاقتك الائتمانية. نحصل فقط على إشعار بنجاح العملية وسجل المشتريات لتفعيل الميزات.</li>
+          <li><strong>سجلات الجلسات والاستخدام:</strong> معلومات حول جلسات التسبيح، العداد، الأذكار المفضلة، وسجلات الأعطال (Crash Logs).</li>
+          <li><strong>بيانات تقنية:</strong> نوع الجهاز، نظام التشغيل، ومعرفات الجهاز العامة.</li>
+          <li><strong>معرّف الإعلانات (Advertising ID):</strong> يُستخدم لعرض إعلانات عبر خدمة Google AdMob.</li>
         </ul>
+
         <h2>2. كيفية استخدامنا للبيانات</h2>
         <p>نستخدم البيانات للأغراض التالية:</p>
         <ul>
           <li>تشغيل الميزات الأساسية: المسبحة العائمة، حفظ الجلسات، والمزامنة السحابية.</li>
+          <li>إدارة الاشتراكات والمشتريات وتفعيل الميزات المدفوعة (Premium).</li>
           <li>تحسين استقرار التطبيق وإصلاح الأخطاء التقنية.</li>
           <li>عرض إعلانات لدعم استمرارية التطبيق المجاني.</li>
         </ul>
+
         <h2>3. الصلاحيات (Permissions)</h2>
-        <p>يطلب التطبيق إذن <strong>الظهور فوق التطبيقات (Overlay / SYSTEM_ALERT_WINDOW)</strong>. هذا الإذن ضروري حصريًا لعرض "أيقونة المسبحة" والمسبحة العائمة فوق الشاشة. <strong>لا</strong> نستخدم هذا الإذن لقراءة محتوى التطبيقات الأخرى أو تسجيل الشاشة.</p>
-        <h2>4. خدمات الطرف الثالث</h2>
-        <p>قد يستخدم التطبيق مكتبات برمجية لجهات خارجية، وتخضع سياساتها لشركاتها المالكة:</p>
         <ul>
-          <li><strong>Google Firebase:</strong> لخدمات المصادقة، قواعد البيانات، والتحليلات.</li>
-          <li><strong>Google AdMob:</strong> لإدارة وعرض الإعلانات.</li>
+            <li><strong>الظهور فوق التطبيقات (Overlay):</strong> ضروري حصريًا لعرض "أيقونة المسبحة العائمة" فوق الشاشة.</li>
+            <li><strong>تشغيل الوسائط (Foreground Service):</strong> نستخدم إذن <code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> لضمان استمرار عمل "راديو القرآن الكريم" عند خروجك من التطبيق أو قفل الشاشة، لتمكينك من الاستماع للتلاوات دون انقطاع.</li>
         </ul>
-        <h2>5. مشاركة البيانات</h2>
-        <p>نحن لا نبيع بياناتك الشخصية. قد تتم مشاركة بيانات تقنية مجهولة المصدر مع مزودي الخدمات المذكورين أعلاه لأغراض التحليل والإعلان فقط.</p>
-        <h2>6. أمن البيانات</h2>
-        <p>نحرص على حماية بياناتك باستخدام تقنيات تشفير قياسية (HTTPS) أثناء النقل، واستخدام خوادم آمنة. ومع ذلك، لا يوجد نظام آمن بنسبة 100%.</p>
-        <h2>7. حذف البيانات</h2>
-        <p>يمكنك طلب حذف حسابك وكافة البيانات المرتبطة به نهائيًا في أي وقت. للقيام بذلك، يرجى التواصل معنا عبر البريد الإلكتروني أدناه، وسيتم تنفيذ الطلب وفقًا للمتطلبات القانونية.</p>
-        <h2>8. حقوقك</h2>
+
+        <h2>4. خدمات الطرف الثالث</h2>
+        <p>قد يستخدم التطبيق مكتبات برمجية لجهات خارجية:</p>
+        <ul>
+          <li><strong>Google Firebase:</strong> للمصادقة وقواعد البيانات والتحليلات.</li>
+          <li><strong>Google AdMob:</strong> لعرض الإعلانات.</li>
+          <li><strong>Google Play Services:</strong> لمعالجة المدفوعات والاشتراكات بأمان.</li>
+        </ul>
+
+        <h2>5. المدفوعات والاشتراكات</h2>
+        <p>يقدم التطبيق عمليات شراء داخلية (مثل إزالة الإعلانات أو دعم المطور). تتم جميع العمليات المالية عبر متجر Google Play وتخضع لسياسة الخصوصية وشروط الاستخدام الخاصة بجوجل. نحن لا نطلع على بياناتك البنكية.</p>
+
+        <h2>6. مشاركة البيانات</h2>
+        <p>نحن لا نبيع بياناتك الشخصية. قد تتم مشاركة بيانات تقنية مجهولة المصدر مع مزودي الخدمات المذكورين أعلاه.</p>
+
+        <h2>7. أمن البيانات</h2>
+        <p>نحرص على حماية بياناتك باستخدام تقنيات تشفير قياسية (HTTPS). ومع ذلك، لا يوجد نظام آمن بنسبة 100%.</p>
+
+        <h2>8. حذف البيانات</h2>
+        <p>يمكنك طلب حذف حسابك وكافة البيانات المرتبطة به نهائيًا في أي وقت. للقيام بذلك، يرجى التواصل معنا عبر البريد الإلكتروني أدناه، أو استخدام خيار حذف الحساب المتاح في التطبيق (إن وجد).</p>
+
+        <h2>9. حقوقك</h2>
         <p>لديك الحق في الوصول إلى بياناتك، أو تصحيحها، أو طلب حذفها، أو تقييد معالجتها.</p>
-        <h2>9. الأطفال والجمهور المستهدف</h2>
-        <p>هذا التطبيق مصنف على أنه مناسب لـ <strong>"الجمهور العام" (Everyone)</strong>. نحن لا نستهدف الأطفال (دون سن 13 عامًا أو السن القانوني في بلدك) بشكل أساسي، ولا نجمع منهم معلومات شخصية عن عمد. إذا كنت ولي أمر وعلمت أن طفلك قد زودنا ببيانات شخصية دون موافقتك، يرجى الاتصال بنا لحذفها.</p>
-        <h2>10. التحديثات</h2>
-        <p>قد نقوم بتحديث هذه السياسة. سيظهر تاريخ آخر تعديل في أعلى هذه الصفحة.</p>
+
+        <h2>10. الأطفال</h2>
+        <p>التطبيق مصنف لـ "الجمهور العام". نحن لا نجمع بيانات شخصية عن عمد من الأطفال دون سن 13 عامًا.</p>
+
         <h2>11. اتصل بنا</h2>
         <p>لأي استفسارات، يرجى التواصل عبر: <a href="mailto:tariqaleiman@gmail.com">tariqaleiman@gmail.com</a></p>
       `,
       en: `
-        <p><strong>Welcome to Floating Tasbih.</strong> This Privacy Policy explains how we collect, use, and protect your information.</p>
+        <p><strong>Welcome to Floating Tasbih.</strong> This Privacy Policy explains how we collect, use, and protect your information, including in-app purchases.</p>
+        
         <h2>1. Information We Collect</h2>
         <p>We collect the following types of data to operate and improve the app:</p>
         <ul>
           <li><strong>Account Data:</strong> Email address (if you sign in) for authentication and cloud syncing via Google Firebase.</li>
-          <li><strong>Usage Data:</strong> Tasbih sessions, counters, preferences, and crash logs to improve app stability.</li>
-          <li><strong>Technical Data:</strong> Device model, OS version, and general identifiers for compatibility.</li>
-          <li><strong>Advertising ID:</strong> Used to display ads via Google AdMob, respecting your device settings.</li>
+          <li><strong>Financial Info:</strong> When you make an in-app purchase or subscription, the transaction is processed entirely by <strong>Google Play</strong>. We do not store or access your credit card details. We only receive confirmation of the purchase history to unlock features.</li>
+          <li><strong>Usage Data:</strong> Tasbih sessions, counters, preferences, and crash logs.</li>
+          <li><strong>Technical Data:</strong> Device model, OS version, and general identifiers.</li>
+          <li><strong>Advertising ID:</strong> Used to display ads via Google AdMob.</li>
         </ul>
+
         <h2>2. How We Use Information</h2>
         <p>We use data to:</p>
         <ul>
           <li>Provide core features: floating tasbih overlay, saving sessions, and cloud sync.</li>
-          <li>Analyze performance and fix technical issues (crashes).</li>
+          <li>Manage subscriptions and purchases (Premium features).</li>
+          <li>Analyze performance and fix technical issues.</li>
           <li>Display advertisements to support the free app.</li>
         </ul>
+
         <h2>3. Permissions</h2>
-        <p>The app requests the <strong>"Display over other apps" (Overlay / SYSTEM_ALERT_WINDOW)</strong> permission. This is strictly used to render the floating tasbih icon. We <strong>do not</strong> use this permission to read screen content or interact with other apps.</p>
-        <h2>4. Third-Party Services</h2>
-        <p>We use trusted third-party services which have their own privacy policies:</p>
         <ul>
-          <li><strong>Google Firebase:</strong> For authentication, database, and analytics.</li>
-          <li><strong>Google AdMob:</strong> For advertising services.</li>
+            <li><strong>Display over other apps (Overlay):</strong> Used strictly to render the floating tasbih icon.</li>
+            <li><strong>Media Playback (Foreground Service):</strong> We use the <code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> permission to ensure the "Quran Radio" continues playing when you exit the app or lock the screen.</li>
         </ul>
-        <h2>5. Data Sharing</h2>
-        <p>We do not sell your personal data. Anonymous technical data may be shared with the providers listed above for analytics and advertising purposes.</p>
-        <h2>6. Data Security</h2>
-        <p>We use industry-standard measures (like HTTPS encryption) to protect your data. However, no method of transmission is 100% secure.</p>
-        <h2>7. Data Deletion</h2>
+
+        <h2>4. Third-Party Services</h2>
+        <p>We use trusted third-party services:</p>
+        <ul>
+          <li><strong>Google Firebase:</strong> For authentication and database.</li>
+          <li><strong>Google AdMob:</strong> For advertising services.</li>
+          <li><strong>Google Play Services:</strong> For secure payment processing.</li>
+        </ul>
+
+        <h2>5. Payments & Subscriptions</h2>
+        <p>The app offers in-app purchases (e.g., remove ads, support developer). All financial transactions are handled by Google Play Store and are subject to Google's Privacy Policy. We do not have access to your banking information.</p>
+
+        <h2>6. Data Sharing</h2>
+        <p>We do not sell your personal data. Anonymous technical data may be shared with the providers listed above.</p>
+
+        <h2>7. Data Security</h2>
+        <p>We use industry-standard measures (like HTTPS encryption) to protect your data.</p>
+
+        <h2>8. Data Deletion</h2>
         <p>You have the right to request the complete deletion of your account and associated data. To do so, please contact us at the email below.</p>
-        <h2>8. Your Rights</h2>
-        <p>You may request access to, correction of, or deletion of your personal data at any time.</p>
+
         <h2>9. Children & Target Audience</h2>
-        <p>This app is intended for a <strong>General Audience</strong>. It is not directed primarily to children under the age of 13 (or the applicable age in your jurisdiction). We do not knowingly collect personal information from children. If you believe your child has provided us with personal data, please contact us to have it removed.</p>
+        <p>This app is intended for a General Audience. We do not knowingly collect personal information from children under 13.</p>
+
         <h2>10. Updates</h2>
         <p>We may update this policy. The "Last updated" date will be visible at the top of this page.</p>
+
         <h2>11. Contact Us</h2>
         <p>For questions or data deletion requests: <a href="mailto:tariqaleiman@gmail.com">tariqaleiman@gmail.com</a></p>
       `
@@ -181,16 +213,15 @@
 
     if(yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // دالة عرض التاريخ مع تفعيل نظام 12 ساعة (ص/م)
     function displayFixedDate(lang) {
       const dateToFormat = new Date(LAST_MODIFIED_DATE);
       const opts = { 
         year: 'numeric', 
         month: 'long', 
         day: 'numeric', 
-        hour: 'numeric', // يظهر الساعة بدون صفر على اليسار
+        hour: 'numeric',
         minute: '2-digit', 
-        hour12: true // ✅ تفعيل نظام AM/PM
+        hour12: true 
       };
       let formatted;
       try {
@@ -254,4 +285,3 @@
   </script>
 </body>
 </html>
-
