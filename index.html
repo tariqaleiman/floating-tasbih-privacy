@@ -21,22 +21,12 @@
     h1{margin:0;font-size:20px}
     .meta{font-size:13px;color:var(--muted);margin-top:6px}
     
-    /* تنسيق الأزرار */
     .controls{display:flex;gap:8px;align-items:center}
     .btn {
-        height: 40px;
-        width: auto;
-        padding: 0 18px;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--text);
-        transition: background 0.2s ease;
+        height: 40px; width: auto; padding: 0 18px; border-radius: 999px;
+        display: inline-flex; align-items: center; justify-content: center;
+        border: none; cursor: pointer; font-size: 14px; font-weight: 500;
+        color: var(--text); transition: background 0.2s ease;
         background: rgba(0, 0, 0, 0.06);
     }
     .btn:hover { background: rgba(0, 0, 0, 0.12); }
@@ -49,6 +39,8 @@
     ul{margin:0 0 8px 20px}
     p{margin:8px 0}
     a{color:var(--accent); text-decoration: none;}
+    a.action-link { font-weight: bold; text-decoration: underline; } /* تنسيق خاص لرابط الحذف */
+    
     footer.policy-footer{margin-top:20px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.04);display:flex;justify-content:space-between;align-items:center;flex-wrap: wrap; gap: 10px;}
     .small{font-size:13px;color:var(--muted)}
     code{background:rgba(0,0,0,0.04);padding:2px 6px;border-radius:6px; font-family: monospace;}
@@ -81,9 +73,11 @@
   </div>
 
   <script>
-    // ✅ تم تحديث التاريخ إلى 9 ديسمبر 2025
-    const LAST_MODIFIED_DATE = '2025-12-09T11:00:00'; 
+    const LAST_MODIFIED_DATE = '2025-12-09T12:00:00'; 
     
+    // 👇 رابط صفحة الحذف التي أنشأتها
+    const DELETE_PAGE_URL = "https://tariqaleiman.github.io/floating-tasbih-legal/";
+
     const FULL = {
       ar: `
         <p><strong>مرحبًا بك في تطبيق المسبحة العائمة.</strong> تُحدد هذه السياسة كيفية جمعنا للبيانات واستخدامها ومشاركتها، بما في ذلك عمليات الشراء والاشتراكات.</p>
@@ -122,34 +116,38 @@
         </ul>
 
         <h2>5. المدفوعات والاشتراكات</h2>
-        <p>يقدم التطبيق عمليات شراء داخلية (مثل إزالة الإعلانات أو دعم المطور). تتم جميع العمليات المالية عبر متجر Google Play وتخضع لسياسة الخصوصية وشروط الاستخدام الخاصة بجوجل. نحن لا نطلع على بياناتك البنكية.</p>
+        <p>يقدم التطبيق عمليات شراء داخلية. تتم جميع العمليات المالية عبر متجر Google Play وتخضع لسياسة الخصوصية وشروط الاستخدام الخاصة بجوجل.</p>
 
         <h2>6. مشاركة البيانات</h2>
         <p>نحن لا نبيع بياناتك الشخصية. قد تتم مشاركة بيانات تقنية مجهولة المصدر مع مزودي الخدمات المذكورين أعلاه.</p>
 
-        <h2>7. أمن البيانات</h2>
-        <p>نحرص على حماية بياناتك باستخدام تقنيات تشفير قياسية (HTTPS). ومع ذلك، لا يوجد نظام آمن بنسبة 100%.</p>
+        <h2>7. حذف البيانات</h2>
+        <p>يمكنك طلب حذف حسابك وكافة البيانات المرتبطة به نهائيًا في أي وقت. يمكنك القيام بذلك بطريقتين:</p>
+        <ul>
+            <li>استخدام <strong><a href="${DELETE_PAGE_URL}" target="_blank" class="action-link">نموذج طلب حذف الحساب</a></strong> المخصص لدينا لتسريع العملية.</li>
+            <li>أو التواصل معنا مباشرة عبر البريد الإلكتروني أدناه.</li>
+        </ul>
 
-        <h2>8. حذف البيانات</h2>
-        <p>يمكنك طلب حذف حسابك وكافة البيانات المرتبطة به نهائيًا في أي وقت. للقيام بذلك، يرجى التواصل معنا عبر البريد الإلكتروني أدناه، أو استخدام خيار حذف الحساب المتاح في التطبيق (إن وجد).</p>
-
-        <h2>9. حقوقك</h2>
+        <h2>8. حقوقك</h2>
         <p>لديك الحق في الوصول إلى بياناتك، أو تصحيحها، أو طلب حذفها، أو تقييد معالجتها.</p>
 
-        <h2>10. الأطفال</h2>
+        <h2>9. الأطفال</h2>
         <p>التطبيق مصنف لـ "الجمهور العام". نحن لا نجمع بيانات شخصية عن عمد من الأطفال دون سن 13 عامًا.</p>
+
+        <h2>10. التحديثات</h2>
+        <p>قد نقوم بتحديث هذه السياسة. سيظهر تاريخ آخر تعديل في أعلى هذه الصفحة.</p>
 
         <h2>11. اتصل بنا</h2>
         <p>لأي استفسارات، يرجى التواصل عبر: <a href="mailto:tariqaleiman@gmail.com">tariqaleiman@gmail.com</a></p>
       `,
       en: `
-        <p><strong>Welcome to Floating Tasbih.</strong> This Privacy Policy explains how we collect, use, and protect your information, including in-app purchases.</p>
+        <p><strong>Welcome to Floating Tasbih.</strong> This Privacy Policy explains how we collect, use, and protect your information.</p>
         
         <h2>1. Information We Collect</h2>
         <p>We collect the following types of data to operate and improve the app:</p>
         <ul>
           <li><strong>Account Data:</strong> Email address (if you sign in) for authentication and cloud syncing via Google Firebase.</li>
-          <li><strong>Financial Info:</strong> When you make an in-app purchase or subscription, the transaction is processed entirely by <strong>Google Play</strong>. We do not store or access your credit card details. We only receive confirmation of the purchase history to unlock features.</li>
+          <li><strong>Financial Info:</strong> When you make an in-app purchase or subscription, the transaction is processed entirely by <strong>Google Play</strong>. We do not store or access your credit card details.</li>
           <li><strong>Usage Data:</strong> Tasbih sessions, counters, preferences, and crash logs.</li>
           <li><strong>Technical Data:</strong> Device model, OS version, and general identifiers.</li>
           <li><strong>Advertising ID:</strong> Used to display ads via Google AdMob.</li>
@@ -167,7 +165,7 @@
         <h2>3. Permissions</h2>
         <ul>
             <li><strong>Display over other apps (Overlay):</strong> Used strictly to render the floating tasbih icon.</li>
-            <li><strong>Media Playback (Foreground Service):</strong> We use the <code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> permission to ensure the "Quran Radio" continues playing when you exit the app or lock the screen.</li>
+            <li><strong>Media Playback (Foreground Service):</strong> We use the <code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code> permission to ensure the "Quran Radio" continues playing in the background.</li>
         </ul>
 
         <h2>4. Third-Party Services</h2>
@@ -179,25 +177,29 @@
         </ul>
 
         <h2>5. Payments & Subscriptions</h2>
-        <p>The app offers in-app purchases (e.g., remove ads, support developer). All financial transactions are handled by Google Play Store and are subject to Google's Privacy Policy. We do not have access to your banking information.</p>
+        <p>The app offers in-app purchases. All financial transactions are handled by Google Play Store and are subject to Google's Privacy Policy.</p>
 
         <h2>6. Data Sharing</h2>
         <p>We do not sell your personal data. Anonymous technical data may be shared with the providers listed above.</p>
 
-        <h2>7. Data Security</h2>
-        <p>We use industry-standard measures (like HTTPS encryption) to protect your data.</p>
+        <h2>7. Data Deletion</h2>
+        <p>You have the right to request the complete deletion of your account and associated data at any time. You can do this by:</p>
+        <ul>
+            <li>Using our dedicated <strong><a href="${DELETE_PAGE_URL}" target="_blank" class="action-link">Account Deletion Request Form</a></strong> for faster processing.</li>
+            <li>Or contacting us directly at the email below.</li>
+        </ul>
 
-        <h2>8. Data Deletion</h2>
-        <p>You have the right to request the complete deletion of your account and associated data. To do so, please contact us at the email below.</p>
+        <h2>8. Your Rights</h2>
+        <p>You may request access to, correction of, or deletion of your personal data at any time.</p>
 
-        <h2>9. Children & Target Audience</h2>
+        <h2>9. Children</h2>
         <p>This app is intended for a General Audience. We do not knowingly collect personal information from children under 13.</p>
 
         <h2>10. Updates</h2>
         <p>We may update this policy. The "Last updated" date will be visible at the top of this page.</p>
 
         <h2>11. Contact Us</h2>
-        <p>For questions or data deletion requests: <a href="mailto:tariqaleiman@gmail.com">tariqaleiman@gmail.com</a></p>
+        <p>For questions: <a href="mailto:tariqaleiman@gmail.com">tariqaleiman@gmail.com</a></p>
       `
     };
 
